@@ -19,3 +19,15 @@ export const SignupValidation = z.object({
     .min(8, { message: 'Too short' })
     .max(50, { message: 'Too long' })
 });
+
+export const SigninValidation = z.object({
+  email: z
+    .string()
+    .email()
+    .min(2, { message: 'Too short' })
+    .max(50, { message: 'Too long' }),
+  password: z
+    .string()
+    .min(8, { message: 'Too short' })
+    .max(50, { message: 'Too long' })
+});
