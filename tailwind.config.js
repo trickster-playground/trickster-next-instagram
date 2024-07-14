@@ -12,7 +12,7 @@ export default {
       center: true,
       padding: '2rem',
       screens: {
-        '2xl': '1400px'
+        '2xl': '1920px'
       }
     },
     extend: {
@@ -28,8 +28,8 @@ export default {
         'dark-4': '#1F1F22',
         'light-1': '#FFFFFF',
         'light-2': '#EFEFEF',
-        'light-3': '#ADD8E6',
-        'light-4': '#5C5C7B'
+        'light-3': '#89CFF0',
+        'light-4': '#ADD8E6'
       },
       screens: {
         xs: '480px'
