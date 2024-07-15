@@ -34,6 +34,7 @@ type PostFormProps = {
 const PostForm = ({ post, action }: PostFormProps) => {
   const { mutateAsync: createPost, isPending: isLoadingCreate } =
     useCreatePost();
+
   const { mutateAsync: updatePost, isPending: isLoadingUpdate } =
     useUpdatePost();
 
@@ -52,6 +53,21 @@ const PostForm = ({ post, action }: PostFormProps) => {
   });
 
   async function onSubmit(values: z.infer<typeof PostValidation>) {
+    if (post && action === 'Update') {
+      const updatedPost = await updatePost({
+        ...values,
+        postId: post.$id,
+        imageId: post?.imageId,
+        imageUrl: post?.imageUrl
+      });
+
+      if (!updatedPost) {
+        toast({
+          title: 'Please try again.'
+        });
+      }
+      return navigate(`/posts/${post.id}`);
+    }
     // ACTION = CREATE
     const newPost = await createPost({
       ...values,
@@ -151,8 +167,10 @@ const PostForm = ({ post, action }: PostFormProps) => {
           <Button
             type='submit'
             className='shad-button_primary whitespace-nowrap hover:!bg-sky-500'
+            disabled={isLoadingCreate || isLoadingUpdate}
           >
-            Submit
+            {isLoadingCreate || (isLoadingUpdate && 'Loading...')}
+            {action} Post
           </Button>
         </div>
       </form>

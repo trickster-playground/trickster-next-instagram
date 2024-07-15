@@ -50,7 +50,10 @@ const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
             Drag photo here
           </h3>
           <p className='text-light-4 small-regular mb-6'>SVG, PNG, JPG</p>
-          <Button className='shad-button_dark_4 hover:!bg-primary-500'>
+          <Button
+            className='shad-button_dark_4 hover:!bg-primary-500'
+            type='button'
+          >
             Select from computer
           </Button>
         </div>
